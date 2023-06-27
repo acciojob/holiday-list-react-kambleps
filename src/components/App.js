@@ -32,10 +32,25 @@ const App = () => {
     { name: 'Mount Abu', country: 'India' },
     { name: 'Tirupati', country: 'India' },
     ]
+let[city,setCity]=useState("")
+let[filtered,setFiltered]=useState(cityList)
+useEffect(()=>{
+  setFiltered(cityList.filter((value)=>value.name.includes(city)))
+},[city])
     
   return (
     <div id="main">
                {/* Do not remove the main div */}
+       <input type="text" onChange={(e)=>setCity(e.target.value)}/>
+      <ol>
+      {
+          filtered.map((value)=>{
+            return(
+                  <li>{value.name} {value.country}</li>
+            )
+          })
+        }
+      </ol>
     </div>
   )
 }
